@@ -5,6 +5,7 @@ import ItemStyles from "./styles/ItemStyles";
 import Title from "./styles/Title";
 import PriceTag from "./styles/PriceTag";
 import formatMoney from "../lib/formatMoney";
+import DeleteItem from "./DeleteItem";
 
 export default class Item extends Component {
   static propTypes = {
@@ -15,7 +16,7 @@ export default class Item extends Component {
     const { item } = this.props;
     return (
       <ItemStyles>
-        {item.image && <img src={item.image} alt={item.title} />}
+        <img src={item.image || `//via.placeholder.com/420`} alt={item.title} />
         <Title>
           <Link
             href={{
@@ -39,7 +40,7 @@ export default class Item extends Component {
             <a>Edit ✏️ </a>
           </Link>
           <button>Add To Cart</button>
-          <button>Delete</button>
+          <DeleteItem id={item.id}>Delete Item</DeleteItem>
         </div>
       </ItemStyles>
     );
