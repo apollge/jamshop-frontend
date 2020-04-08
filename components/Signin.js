@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
-import Form from "./styles/Form";
-import ErrorMessage from "./ErrorMessage";
-import { CURRENT_USER_QUERY } from "./User";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import Form from './styles/Form';
+import ErrorMessage from './ErrorMessage';
+import { CURRENT_USER_QUERY } from './User';
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -17,9 +17,9 @@ const SIGNIN_MUTATION = gql`
 
 class Signin extends Component {
   state = {
-    email: "",
-    name: "",
-    password: "",
+    email: '',
+    name: '',
+    password: '',
   };
 
   handleChange = (e) => {
@@ -40,7 +40,7 @@ class Signin extends Component {
               onSubmit={async (e) => {
                 e.preventDefault();
                 await signup();
-                this.setState({ email: "", name: "", password: "" });
+                this.setState({ email: '', name: '', password: '' });
               }}
             >
               <fieldset disabled={loading} aria-busy={loading}>
