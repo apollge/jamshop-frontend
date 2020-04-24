@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 import User, { CURRENT_USER_QUERY } from './User';
 import calcTotalPrice from '../lib/calcTotalPrice';
 
@@ -27,12 +29,19 @@ export class Checkout extends Component {
   static propTypes = {};
 
   onToken = async (res, createOrder) => {
-    await createOrder({
+    NProgress.start();
+
+    const order = await createOrder({
       variables: {
         token: res.id,
       },
     }).catch((err) => {
       alert(err.message);
+    });
+
+    Router.push({
+      pathname: '/order',
+      query: { id: order.data.createOrder.id },
     });
   };
 

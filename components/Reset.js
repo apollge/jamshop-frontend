@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import Form from './styles/Form';
 import ErrorMessage from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
@@ -57,6 +58,9 @@ class Reset extends Component {
                 e.preventDefault();
                 await reset();
                 this.setState({ password: '', confirmPassword: '' });
+                Router.push({
+                  pathname: '/',
+                });
               }}
             >
               <fieldset disabled={loading} aria-busy={loading}>
